@@ -14,7 +14,7 @@ export const createProject = async (
 
         const projects = await firestoreRepository.getAllDocuments<Project>(COLLECTION)
         const newProjectData = {
-            id: (projects.length + 1).toString(), 
+            id: projects.length + 1, 
             name: projectData.name,
             status: "active",
             createdAt: new Date().toISOString(),

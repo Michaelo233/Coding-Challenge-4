@@ -37,57 +37,57 @@ export const getAllProjectsHandler = async (
 };
 
 
-// // handles GET request to read a single post by ID
-// export const getPostByIdHandler = async (
-//     req: Request,
-//     res: Response,
-//     next: NextFunction
-// ): Promise<void> => {
-//     try {
-//         const { id } = req.params;
+// handles GET request to read a single post by ID
+export const getProjectByIdHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const { id } = req.params;
 
-//         const post = await postService.getPostById(id as string);
+        const project = await postService.getProjectById(id as string);
 
-//         res.status(HTTP_STATUS.OK).json(successResponse({post}, "Post retrieved successfully"));
-//     } catch (error: unknown) {
-//         next(error);
-//     }
-// };
-
-
-// // handles PUT request to update an existing post
-// export const updatePostHandler = async (
-//     req: Request,
-//     res: Response,
-//     next: NextFunction
-// ): Promise<void> => {
-//     try {
-//         const { id } = req.params;
-//         const {userId, content} = req.body;
-//         const updateData = {userId, content};
-
-//         const updatedPost = await postService.updatePost(id as string, updateData);
-
-//         res.status(HTTP_STATUS.OK).json(successResponse({updatedPost}, "Post updated successfully"));
-//     } catch (error: unknown) {
-//         next(error);
-//     }
-// };
+        res.status(HTTP_STATUS.OK).json(successResponse({project}, "Project retrieved successfully"));
+    } catch (error: unknown) {
+        next(error);
+    }
+};
 
 
-// // handles DELETE request to delete an existing post
-// export const deletePostHandler = async (
-//     req: Request,
-//     res: Response,
-//     next: NextFunction
-// ): Promise<void> => {
-//     try {
-//         const { id } = req.params;
+// handles PUT request to update an existing post
+export const updateProjectHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const { id } = req.params;
+        const {name} = req.body;
+        const updateData = {name};
+
+        const updatedProject = await postService.updateProject(id as string, updateData);
+
+        res.status(HTTP_STATUS.OK).json(successResponse({updatedProject}, "Project updated successfully"));
+    } catch (error: unknown) {
+        next(error);
+    }
+};
+
+
+// handles DELETE request to delete an existing post
+export const deleteProjectHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const { id } = req.params;
         
-//         await postService.deletePost(id as string);
+        await postService.deleteProject(id as string);
 
-//         res.status(HTTP_STATUS.OK).json(successResponse({}, "Post deleted successfully"));
-//     } catch (error: unknown) {
-//         next(error);
-//     }
-// };
+        res.status(HTTP_STATUS.OK).json(successResponse({}, "Project deleted successfully"));
+    } catch (error: unknown) {
+        next(error);
+    }
+};

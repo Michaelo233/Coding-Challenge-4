@@ -11,5 +11,17 @@ projectRouter.post("/",
     authenticate,
     isAuthorized({ hasRole: ["admin", "lead"] }),
     postController.createProjectHandler);
+projectRouter.get("/", authenticate, postController.getAllProjectsHandler);
+
+projectRouter.get("/:id", authenticate, postController.getProjectByIdHandler);
+
+projectRouter.put("/:id", 
+    authenticate,
+    isAuthorized({ hasRole: ["admin", "lead"], allowSameUser: true }),
+    postController.updateProjectHandler);
+
+projectRouter.delete("/:id",
+    authenticate,
+    isAuthorized({ hasRole: ["admin"]}), postController.deleteProjectHandler);
 
 export default projectRouter

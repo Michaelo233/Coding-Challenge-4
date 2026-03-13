@@ -7,16 +7,17 @@ import { db } from "../../../config/firebaseConfig";
 // }
 
 // to create a new document
-export const createDocument = async <T extends { id: string }>(
+export const createDocument = async <T extends { id: number }>(
     collectionName: string,
     data: T
 ): Promise<string> => {
     try {
         
-        await db.collection(collectionName).doc(data.id).set(data);
+        const docId = data.id.toString();
+        await db.collection(collectionName).doc(docId).set(data);
 
         // returns document id for the new post created in the firestore
-        return data.id;
+        return docId;
         
     } catch (error: unknown) {
         const errorMessage =
