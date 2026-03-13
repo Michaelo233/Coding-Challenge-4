@@ -3,28 +3,26 @@ import * as firestoreRepository from "../repositories/firestoreRepositories";
 // import { eventSchemas } from "../validation/eventSchemas";
 // import { validateRequest } from "../middleWare/validate";
 
-const COLLECTION = "loanApp";
+const COLLECTION = "Project";
 
-// creating new loanApplication 
-export const createLoanApplication = async (
-    applicationData: {
-        applicant: string, 
-        amount: number, 
-    }): Promise<LoanApp> => {
+// creating new project
+export const createProject = async (
+    projectData: {
+        name: string,  
+    }): Promise<Project> => {
     try {
 
-        const loanApplications = await firestoreRepository.getAllDocuments<LoanApp>(COLLECTION)
-        const newLoanData = {
-            id: (loanApplications.length + 1).toString(), 
-            applicant: applicationData.applicant,
-            amount: applicationData.amount,
-            status: "pending",
+        const projects = await firestoreRepository.getAllDocuments<Project>(COLLECTION)
+        const newProjectData = {
+            id: (projects.length + 1).toString(), 
+            name: projectData.name,
+            status: "active",
             createdAt: new Date().toISOString(),
         };
         
-        const applicationId = await firestoreRepository.createDocument<LoanApp>(COLLECTION, newLoanData);
+        const projectId = await firestoreRepository.createDocument<Project>(COLLECTION, newProjectData);
         
-        return {applicationId, ... newLoanData} as LoanApp;
+        return {projectId, ... newProjectData} as Project;
         
     } catch (error: unknown) {
         const errorMessage =
