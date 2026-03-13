@@ -22,19 +22,19 @@ export const createProjectHandler = async (
 };
 
 // // handles GET request to read all posts
-// export const getAllProjectHandler = async (
-//     req: Request,
-//     res: Response,
-//     next: NextFunction
-// ): Promise<void> => {
-//     try {
-//         const posts = await postService.getAllProject();
+export const getAllProjectsHandler = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<void> => {
+    try {
+        const projects = await postService.getAllProjects();
 
-//         res.status(HTTP_STATUS.OK).json(successResponse({posts}, "Posts retrieved successfully"));
-//     } catch (error: unknown) {
-//         next(error);
-//     }
-// };
+        res.status(HTTP_STATUS.OK).json(successResponse({projects}, "Projects retrieved successfully"));
+    } catch (error: unknown) {
+        next(error);
+    }
+};
 
 
 // // handles GET request to read a single post by ID
