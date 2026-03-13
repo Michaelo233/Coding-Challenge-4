@@ -3,7 +3,7 @@ import * as firestoreRepository from "../repositories/firestoreRepositories";
 // import { eventSchemas } from "../validation/eventSchemas";
 // import { validateRequest } from "../middleWare/validate";
 
-const COLLECTION = "Project";
+const COLLECTION = "project";
 
 // creating new project
 export const createProject = async (

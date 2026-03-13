@@ -1,11 +1,15 @@
 import express from "express";
 import { validateRequest } from "../middleware/validate";
 import * as postController from "../controllers/projectController";
+import authenticate from "../middleware/authenticate";
+import isAuthorized from "../middleware/authorize";
 
-
-const postRouter = express.Router();
+const projectRouter = express.Router();
 
 // create new post with authentication and role-based authorization
-postRouter.post("/", 
-    
+projectRouter.post("/",
+    authenticate,
+    isAuthorized({ hasRole: ["admin", "lead"] }),
     postController.createProjectHandler);
+
+export default projectRouter

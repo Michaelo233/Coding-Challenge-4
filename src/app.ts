@@ -7,7 +7,7 @@ import {
 import errorHandler from "./api/v1/middleware/errorHandler";
 
 /** import the routes **/
-
+import projectRouter from "./api/v1/routes/projectRoutes";
 
 const app: Express = express();
 
@@ -22,6 +22,8 @@ app.use(express.json());
 
 
 /** Update the api endppoints with appropriate routes **/
+// add API endpoint routes
+app.use("/api/v1/projects", projectRouter);
 
 
 
