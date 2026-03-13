@@ -3,7 +3,7 @@ import authenticate from "../src/api/v1/middleware/authenticate";
 import { auth } from "../src/config/firebaseConfig";
 import { AuthenticationError } from "../src/api/v1/errors/errors";
 // Mock Firebase auth
-jest.mock("../config/firebaseConfig", () => ({
+jest.mock("../src/config/firebaseConfig.ts", () => ({
     auth: {
         verifyIdToken: jest.fn(),
     },
